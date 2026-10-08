@@ -1,0 +1,78 @@
+SIMULADO – CAPÍTULOS 1, 2 E 3
+RESPOSTAS DAS QUESTÕES TEÓRICAS – 01 A 06
+
+QUESTÃO 01
+Resposta: alternativa C.
+A linguagem C diferencia letras maiúsculas de minúsculas (é case-sensitive). Assim, por exemplo, "main", "Main" e "MAIN" são identificadores diferentes. Identificadores também precisam seguir as regras da linguagem e não podem ser palavras reservadas.
+
+QUESTÃO 02
+No código apresentado, há problemas que impedem a compilação correta:
+1. Há um ponto e vírgula indevido após #include <stdlib.h>.
+2. A função principal foi escrita como Main(), mas em C deve ser main().
+3. A string usada no printf está sem as aspas necessárias.
+Além disso, cout << endl; pertence ao C++, não à linguagem C, e deve ser removido/substituído.
+
+QUESTÃO 03
+Código:
+int a = 2, b = 4, c = 5, d = 10;
+a += b + c;
+b *= c = d - 2;
+d %= a + 3;
+a += b += c += 5;
+
+Passo a passo:
+1. a += b + c  -> a = 2 + 4 + 5 = 11.
+2. c = d - 2  -> c = 8; depois b *= c -> b = 4 * 8 = 32.
+3. d %= a + 3 -> d = 10 % 14 = 10.
+4. c += 5 -> c = 13; b += c -> b = 45; a += b -> a = 56.
+
+Resultado final:
+a = 56
+b = 45
+c = 13
+d = 10
+
+QUESTÃO 04
+Considere i = 2, j = 3, k = 0, x = 2.5 e y = 5.0.
+
+A) i < j && x < y
+2 < 3 é verdadeiro e 2.5 < 5.0 também é verdadeiro. Resultado: 1.
+
+B) i + j >= 5 && k != 0
+2 + 3 >= 5 é verdadeiro, mas k != 0 é falso. Resultado: 0.
+
+C) !k && x * 3 >= y
+!0 é verdadeiro e 7.5 >= 5.0 é verdadeiro. Resultado: 1.
+
+D) !(i == j) || k
+2 == 3 é falso; portanto !(falso) é verdadeiro. Resultado: 1.
+
+E) (i == 2) && (j == 3) || (k == 1)
+A primeira parte é verdadeira e verdadeira, portanto o resultado final é verdadeiro. Resultado: 1.
+
+QUESTÃO 05
+FOR: adequado quando a quantidade de repetições ou a inicialização, condição e incremento estão bem definidos no cabeçalho.
+WHILE: adequado quando a repetição depende de uma condição e o número de repetições pode ser indeterminado.
+DO-WHILE: adequado quando o bloco precisa ser executado pelo menos uma vez, como em menus e validações de entrada.
+
+QUESTÃO 06
+O programa apresenta erro porque a variável soma foi declarada dentro do bloco do for. Seu escopo termina no fechamento das chaves do laço, portanto ela não existe no printf final.
+
+O continue, quando i == 5, pula a execução restante daquela iteração. O break, quando i == 8, encerra completamente o laço.
+
+Para corrigir o escopo, soma deve ser declarada antes do for:
+
+int soma = 0;
+for (i = 1; i <= 10; i++) {
+    if (i == 5) continue;
+    if (i == 8) break;
+    soma += i * i;
+}
+printf("Soma final = %d\n", soma);
+
+Os valores somados são 1² + 2² + 3² + 4² + 6² + 7² = 115.
+Logo, a saída é:
+Soma final = 115
+
+OBSERVAÇÃO SOBRE A QUESTÃO 07
+A numeração fornecida no enunciado enviado salta da Questão 06 diretamente para a Questão 08. Não foi fornecido enunciado para a Questão 07. Por isso, nenhuma questão 07 foi inventada neste material.

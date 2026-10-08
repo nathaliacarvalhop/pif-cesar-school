@@ -1,0 +1,169 @@
+LISTA DE EXERCÍCIOS – SIMULADO – CAPÍTULOS 1, 2 E 3
+RESPOSTAS TEÓRICAS E ANALÍTICAS
+
+QUESTÃO 01
+Alternativa correta: c).
+
+Todos os pares ('valor'/'VALOR', 'peso'/'Peso', 'taxa'/'TAXA') representam identificadores distintos para o compilador, pois a linguagem C diferencia letras maiúsculas de minúsculas (case sensitive).
+
+a) Incorreta: 'numero' e 'Numero' são identificadores diferentes.
+b) Incorreta: a função de entrada padrão deve ser escrita como main, com 'm' minúsculo.
+c) Correta.
+d) Incorreta: a diferenciação entre maiúsculas e minúsculas é uma característica da linguagem C, não algo que dependa exclusivamente do sistema operacional.
+
+QUESTÃO 02
+Os três erros são:
+
+1. O ponto e vírgula após #include <stdlib.h> está incorreto. A diretiva deve ser:
+#include <stdlib.h>
+
+2. A função foi declarada como Main() com M maiúsculo. Em C, o ponto de entrada deve ser:
+int main()
+
+3. A chamada printf está sem aspas na string. O correto é:
+printf("A idade do aluno eh: %d anos..\n", idade);
+
+Além disso, cout << endl; é sintaxe de C++, não de C. Como a questão pede os três erros sintáticos/estruturais principais, os três acima são os erros diretamente relacionados ao código apresentado. Para um programa C completo, a linha cout também deveria ser removida/substituída por printf.
+
+Uma versão corrigida seria:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int idade = 20;
+
+    printf("A idade do aluno eh: %d anos..\n", idade);
+
+    system("PAUSE");
+    return 0;
+}
+
+QUESTÃO 03
+Código inicial:
+int a = 2, b = 4, c = 5, d = 10;
+
+1. a += b + c;
+a = 2 + 4 + 5
+a = 11
+
+2. b *= c = d - 2;
+Primeiro:
+c = d - 2 = 10 - 2 = 8
+Depois:
+b = b * c = 4 * 8 = 32
+
+Logo:
+a = 11, b = 32, c = 8, d = 10
+
+3. d %= a + 3;
+a + 3 = 14
+d = 10 % 14 = 10
+
+Logo:
+d = 10
+
+4. a += b += c += 5;
+A avaliação ocorre da direita para a esquerda nas atribuições compostas:
+c += 5  -> c = 13
+b += c  -> b = 45
+a += b  -> a = 56
+
+Valores finais:
+a = 56
+b = 45
+c = 13
+d = 10
+
+QUESTÃO 04
+Dados:
+i = 2, j = 3, k = 0, x = 2.5, y = 5.0.
+
+a) i < j + 2
+2 < 5 -> 1 (Verdadeiro)
+
+b) 2 * i - 5 <= j - 4
+4 - 5 <= 3 - 4
+-1 <= -1 -> 1 (Verdadeiro)
+
+c) !k && (x + y >= 7.5)
+!0 = 1
+2.5 + 5.0 = 7.5
+7.5 >= 7.5 -> 1
+1 && 1 -> 1 (Verdadeiro)
+
+d) !(i == j) || (y / x == 2.0)
+2 == 3 -> 0
+!0 -> 1
+1 || qualquer resultado -> 1 (Verdadeiro)
+
+e) i == 2 && j == 4 || k == 0
+(2 == 2) && (3 == 4) || (0 == 0)
+1 && 0 || 1
+0 || 1 -> 1 (Verdadeiro)
+
+Resultados:
+a) 1
+b) 1
+c) 1
+d) 1
+e) 1
+
+QUESTÃO 05
+a) while testa a condição antes de executar o bloco, podendo executar zero vezes. do-while executa o bloco primeiro e só depois testa a condição, portanto executa pelo menos uma vez.
+
+b) O for é mais elegante quando a repetição possui uma inicialização, uma condição de continuação e uma atualização do contador bem definidas, especialmente quando a quantidade ou intervalo de iterações é conhecido. Por exemplo, para percorrer os números de 1 a 100, o for deixa toda a lógica de controle no cabeçalho.
+
+c) while (condicao); não é necessariamente erro de compilação. O ponto e vírgula constitui o corpo vazio do while. É normalmente um erro de lógica. Se condicao for verdadeira e nunca mudar, o programa ficará preso em um laço infinito, repetindo apenas a avaliação da condição.
+
+QUESTÃO 06
+a) O erro ocorre porque a variável soma foi declarada dentro do bloco do for. Seu escopo termina quando as chaves do for são fechadas. Portanto, o printf fora do bloco não consegue acessar soma.
+
+b) As iterações funcionam assim:
+- i = 1: executa e soma 1².
+- i = 2: executa e soma 2².
+- i = 3: executa e soma 3².
+- i = 4: executa e soma 4².
+- i = 5: continue é executado; o restante da iteração é ignorado.
+- i = 6: executa e soma 6².
+- i = 7: executa e soma 7².
+- i = 8: break é executado; o laço é encerrado imediatamente.
+Assim, as iterações que chegam ao cálculo da soma são 1, 2, 3, 4, 6 e 7. O continue impede o cálculo de i = 5, e o break impede i = 8 e todas as iterações seguintes.
+
+c) Para corrigir o escopo, soma deve ser declarada antes do for e inicializada uma única vez:
+
+#include <stdio.h>
+
+int main() {
+    int i;
+    int soma = 0;
+
+    for (i = 1; i <= 10; i++) {
+        if (i == 5)
+            continue;
+
+        if (i == 8)
+            break;
+
+        soma += i * i;
+    }
+
+    printf("Soma final = %d\n", soma);
+
+    return 0;
+}
+
+Cálculo:
+1² + 2² + 3² + 4² + 6² + 7²
+= 1 + 4 + 9 + 16 + 36 + 49
+= 115
+
+Resultado impresso:
+Soma final = 115
+
+
+OBSERVAÇÃO SOBRE A QUESTÃO 07
+O enunciado fornecido salta diretamente da Questão 06 para a Questão 08. Não há texto da Questão 07 no material enviado. Portanto, ela não foi inventada nem preenchida com uma questão diferente.
+
+
+QUESTÕES PRÁTICAS
+As questões 8 a 15 foram implementadas em arquivos .c separados.
