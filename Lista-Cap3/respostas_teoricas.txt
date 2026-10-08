@@ -1,0 +1,165 @@
+LISTA DE EXERCÍCIOS – CAPÍTULO 3 – LAÇO DE REPETIÇÃO
+Respostas teóricas e analíticas
+
+QUESTÃO 01
+a) O while testa a condição antes de executar o bloco, portanto pode executar zero vezes. O do-while executa o bloco primeiro e testa a condição depois, portanto executa pelo menos uma vez.
+
+b) for é mais adequado quando se conhece ou controla claramente a quantidade/intervalo de repetições, como contar de 1 a 100. while é adequado quando a repetição depende de uma condição e não se sabe previamente quantas vezes ocorrerá. do-while é adequado quando o bloco precisa ser executado pelo menos uma vez, como em menus e validações de entrada.
+
+c) while (condicao); não é erro de compilação. É, em geral, um erro de lógica. O ponto e vírgula representa o corpo vazio do while. Se condicao for verdadeira e nunca mudar, o programa ficará preso em um laço infinito, executando repetidamente o teste sem executar nenhuma instrução dentro do laço. Se condicao eventualmente se tornar falsa por algum efeito externo ao laço, a execução continuará após o ponto e vírgula.
+
+QUESTÃO 02
+a) A variável soma foi declarada dentro do bloco delimitado pelas chaves do for. Seu escopo é esse bloco, portanto ela não é visível no printf que está depois do fechamento das chaves.
+
+b) Mesmo que o printf fosse colocado dentro do for, soma seria criada e inicializada com zero novamente a cada iteração. Assim, ela não acumularia os quadrados anteriores. Em cada iteração seria obtido somente o quadrado do valor atual de i.
+
+c) O código corrigido deve declarar e inicializar soma antes do for:
+
+#include <stdio.h>
+
+int main() {
+    int i;
+    int soma = 0;
+
+    for (i = 1; i < 10; i++) {
+        soma += i * i;
+    }
+
+    printf("Soma final = %d\n", soma);
+    return 0;
+}
+
+Em C, uma variável declarada dentro de um bloco entre chaves possui escopo de bloco: ela pode ser acessada apenas dentro daquele bloco e de seus sub-blocos. Seu tempo de vida, para uma variável automática local, normalmente começa quando a execução alcança sua declaração e termina quando a execução deixa o bloco. Por isso, a variável soma original não existe para o printf externo e também é reinicializada em cada passagem pelo bloco do for.
+
+QUESTÃO 03
+a) O Trecho A imprime:
+36    18    9    4    2    1
+
+Depois de 1, a divisão inteira 1 / 2 resulta em 0 e a condição a > 0 deixa de ser verdadeira.
+
+b) No Trecho B, getch() lê um caractere sem esperar necessariamente por Enter, dependendo da implementação/biblioteca utilizada. O valor lido é atribuído a ch e comparado com 'X'. Enquanto o caractere for diferente de X, o programa imprime ch + 1. Como caracteres são representados numericamente, ch + 1 corresponde ao próximo código de caractere (por exemplo, 'A' + 1 resulta em 'B' em uma codificação ASCII). Os parênteses são necessários porque a atribuição tem precedência menor que a comparação. Sem os parênteses, a expressão poderia ser interpretada como ch = (getch() != 'X'), atribuindo 0 ou 1 a ch, em vez de atribuir o caractere lido.
+
+c) O laço pode ser interrompido programaticamente usando break dentro do laço, ou tornando alguma condição verdadeira/falsa que provoque a saída. Por exemplo:
+for (;;) {
+    if (condicao_de_saida) {
+        break;
+    }
+    printf("Laço\n");
+}
+
+QUESTÃO 04
+a) break encerra imediatamente o laço em que está contido e a execução continua na primeira instrução depois desse laço.
+
+b) continue interrompe a iteração atual e inicia a próxima iteração. Em um for, após o continue, a expressão de incremento (a terceira expressão do cabeçalho) é executada antes do próximo teste da condição.
+
+c) Apenas o laço mais interno, isto é, aquele em que o break está diretamente contido, é interrompido. O laço externo continua normalmente.
+
+QUESTÃO 05
+a) O laço executa 5 iterações.
+
+b) Saída:
+i = 0, j = 10 | soma = 10
+i = 1, j = 9 | soma = 10
+i = 2, j = 8 | soma = 10
+i = 3, j = 7 | soma = 10
+i = 4, j = 6 | soma = 10
+
+c) Uma versão equivalente usando while:
+int i = 0, j = 10;
+
+while (i < j) {
+    printf("i = %d, j = %d | soma = %d\n", i, j, i + j);
+    i++;
+    j--;
+}
+
+QUESTÃO 06
+a) O valor final impresso é 6.
+
+b) A expressão x++ < 5 usa o valor atual de x para a comparação e só depois incrementa x:
+- x = 0: compara 0 < 5, verdadeiro; depois x vira 1.
+- x = 1: compara 1 < 5, verdadeiro; depois x vira 2.
+- x = 2: compara 2 < 5, verdadeiro; depois x vira 3.
+- x = 3: compara 3 < 5, verdadeiro; depois x vira 4.
+- x = 4: compara 4 < 5, verdadeiro; depois x vira 5.
+- x = 5: compara 5 < 5, falso; depois x vira 6.
+O ponto e vírgula significa que o corpo do while é vazio.
+
+c) Forma explícita:
+int x = 0;
+
+while (1) {
+    if (x >= 5) {
+        x++;
+        break;
+    }
+    x++;
+}
+
+printf("Valor final de x = %d\n", x);
+
+QUESTÃO 07
+A versão com for é a mais adequada para este caso porque existe um intervalo claramente definido, de 0 a 100, e o contador faz parte naturalmente do cabeçalho do laço.
+
+QUESTÃO 08
+O programa utiliza do-while para garantir que a solicitação seja feita pelo menos uma vez.
+
+QUESTÃO 09
+O valor negativo é uma sentinela de parada e não entra na quantidade, soma ou média.
+
+QUESTÃO 10
+Os 100 primeiros múltiplos positivos de 3 vão de 3 até 300.
+
+QUESTÃO 11
+Se A <= B, a contagem é crescente. Se A > B, a contagem é decrescente.
+
+QUESTÃO 12
+A fórmula de Fahrenheit é F = (9*C)/5 + 32 e a de Kelvin é K = C + 273.15. A tabela percorre 0 a 100 em passos de 5.
+
+QUESTÃO 13
+O fatorial é calculado por multiplicações sucessivas. Para 0 e 1, o resultado é 1. Valores negativos são inválidos.
+
+QUESTÃO 14
+O programa lista os quadrados de 1 a 100 e acumula a soma. A soma final dos quadrados de 1 a 100 é 338350.
+
+QUESTÃO 15
+Um número é múltiplo de 3 e de 5 ao mesmo tempo quando num % 3 == 0 e num % 5 == 0.
+
+QUESTÃO 16
+A senha secreta é 2026 e o usuário possui no máximo três tentativas. Ao acertar, o programa informa a quantidade de tentativas usadas; após três erros, bloqueia a conta.
+
+QUESTÃO 17
+A leitura termina com -1.0. As notas de 0.0 a 10.0 são contabilizadas para menor, maior, soma e média. O programa também trata o caso em que nenhuma nota válida foi informada.
+
+QUESTÃO 18
+O algoritmo usa n % 10 para obter o último dígito, acrescenta esse dígito ao número invertido e depois utiliza n /= 10 para remover o último dígito.
+
+QUESTÃO 19
+A sequência solicitada começa em 1, 1. Para N = 1, o primeiro termo é 1; para N = 2, os dois primeiros termos são 1 e 1. A partir do terceiro, cada termo é a soma dos dois anteriores.
+
+QUESTÃO 20
+O programa percorre os códigos decimais de 32 a 126 e mostra decimal, hexadecimal e caractere correspondente.
+
+QUESTÃO 21
+A letra secreta é gerada por rand() % 26 + 'a'. O usuário recebe uma dica informando se a letra secreta vem antes ou depois da letra digitada.
+
+QUESTÃO 22
+O Triângulo de Floyd é construído com dois laços: o externo controla as linhas e o interno controla a quantidade de números impressos em cada linha.
+
+QUESTÃO 23
+O quadrado vazado possui X nas bordas e espaços no interior. A primeira e a última linha são preenchidas com X.
+
+QUESTÃO 24
+O X é formado quando a posição da coluna é igual à linha ou quando a coluna é igual a N - 1 - linha.
+
+QUESTÃO 25
+Um número primo é maior que 1 e possui exatamente dois divisores positivos. O programa conta os divisores encontrados.
+
+QUESTÃO 26
+O programa percorre o intervalo [A, B], testa cada número quanto à primalidade e soma os primos encontrados.
+
+QUESTÃO 27
+O programa utiliza as cédulas 100, 50, 20, 10, 5 e 2, subtraindo sucessivamente a maior cédula possível. Valores que não podem ser formados exatamente com essas cédulas são rejeitados.
+
+QUESTÃO 28
+O menu fica dentro de um do-while e utiliza switch. A opção 1 calcula reajuste, a opção 2 calcula retenção de imposto e a opção 3 encerra. Opções diferentes de 1, 2 e 3 são inválidas.
