@@ -74,5 +74,4 @@ Os valores somados são 1² + 2² + 3² + 4² + 6² + 7² = 115.
 Logo, a saída é:
 Soma final = 115
 
-OBSERVAÇÃO SOBRE A QUESTÃO 07
-A numeração fornecida no enunciado enviado salta da Questão 06 diretamente para a Questão 08. Não foi fornecido enunciado para a Questão 07. Por isso, nenhuma questão 07 foi inventada neste material.
+
